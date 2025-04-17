@@ -51,10 +51,14 @@ export const categoryController = {
   // UPDATE
   update: async (req, res, next) => {
     try {
-      const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true,
-      });
+      const category = await Category.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
 
       if (!category) {
         return res.status(404).json({ message: "Category not found" });

@@ -1,4 +1,5 @@
-import { status } from "http-status";
+import { StatusCodes } from 'http-status-codes';
+
 
 import { User } from "../models/index.js";
 
@@ -11,7 +12,6 @@ export const authController = {
         "email _id",
       ).exec();
 
-      console.log(user);
       if (!user) {
         const newUser = new User(body);
 

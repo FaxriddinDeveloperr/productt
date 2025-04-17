@@ -1,6 +1,8 @@
 import app from "./app.js";
 import { config } from "./config/index.js";
 import { connectionDB } from "./db/index.js";
+import dotenv from "dotenv"
+dotenv.config()
 
 function bootstrap() {
   try {

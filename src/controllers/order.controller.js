@@ -4,7 +4,23 @@ export const orderController = {
 
   create: async (req, res, next) => {
     try {
-      const order = new Order(req.body);
+      const User = req.user
+      if(!User)
+        return res.status(401).json({message: "User not found"})
+
+      const {status,total,user,product} = req.body
+
+      if(!status || !total || !product)
+        return res.status(400).json({message: "All data is required"})
+
+
+      const order = new Order({
+        status,
+        total,
+        user:user._id,
+        product
+      });
+
       await order.save();
       res.status(201).send(order);
     } catch (err) {

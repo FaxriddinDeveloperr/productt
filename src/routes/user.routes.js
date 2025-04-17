@@ -1,5 +1,19 @@
 import { Router } from "express";
 
-export const userRouter = Router();
+import { userController } from "../controllers/user.controller.js";
+import { authSchema } from "../validations/auth.validation.js";
+import { authMiddleware } from "../middlewares/auth.middlewarse.js";
 
-userRouter.get("/profile");
+const router = Router();
+
+router
+  .post("/", validateBody(authSchema.signIn), userController.profile)
+  .put(
+    "/:id",
+    authMiddleware,
+    validateBody(authUpdateSchema),
+    userController.update
+  )
+  .delete("/:id", authMiddleware, userController.delete);
+
+export { router as userRouter };

@@ -8,5 +8,3 @@ const hashedPassword3 = await bcrypt.hash(password, salt);
 
 const newPassword = "qwer12345";
 console.log(hashedPassword);
-console.log(hashedPassword2);
-console.log(hashedPassword3);
